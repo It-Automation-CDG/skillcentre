@@ -7,7 +7,6 @@ import com.skillCentre.Repository.EmpRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,6 +47,7 @@ public class EmpService {
         return "The employee's record has been deleted";
     }
 
+    //this ius to check
     public boolean updateEmployee(int employeeId, Employee updatedEmployee) {
         Optional<Employee> optionalEmployee = empRepo.findById(employeeId);
         if (optionalEmployee.isPresent()) {
@@ -66,20 +66,8 @@ public class EmpService {
         }
     }
 
-    public Employee uploadResume(MultipartFile file,
-                                 String employeeName,
-                                 String designation,
-                                 String experience,
-                                 String primarySkills,
-                                 String knowledgeIn,
-                                 String additionalSkills) throws IOException {
+    public Employee uploadResume(MultipartFile file) throws IOException {
         Employee employee = new Employee();
-        employee.setEmployeeName(employeeName);
-        employee.setDesignation(designation);
-        employee.setExperience(experience);
-        employee.setPrimarySkills(primarySkills);
-        employee.setKnowledgeIn(knowledgeIn);
-        employee.setAdditionalSkills(additionalSkills);
         employee.setResumeUpload(file.getBytes());
 
         return empRepo.save(employee);
