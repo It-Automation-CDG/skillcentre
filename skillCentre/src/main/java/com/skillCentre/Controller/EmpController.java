@@ -30,15 +30,9 @@ public class EmpController {
     }
 
     @PostMapping("/uploadResume")
-    public ResponseEntity<String> uploadResume(@RequestParam("file") MultipartFile file,
-                                               @RequestParam("employeeName") String employeeName,
-                                               @RequestParam("designation") String designation,
-                                               @RequestParam("experience") String experience,
-                                               @RequestParam("primarySkills") String primarySkills,
-                                               @RequestParam("knowledgeIn") String knowledgeIn,
-                                               @RequestParam("additionalSkills") String additionalSkills) throws IOException {
-        this.empService.uploadResume(file, employeeName, designation, experience, primarySkills, knowledgeIn, additionalSkills);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Data has been added");
+    public ResponseEntity<String> uploadResume(@RequestParam("file") MultipartFile file) throws IOException {
+        this.empService.uploadResume(file);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FILE HAS BEEN UPLOADED ");
     }
 
     @PutMapping("/{empId}")
