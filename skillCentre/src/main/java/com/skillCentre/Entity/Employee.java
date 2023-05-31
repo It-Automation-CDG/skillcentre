@@ -26,7 +26,6 @@ public class Employee {
     private String KnowledgeIn;
     private String AdditionalSkills;
     private String email;
-    @Lob
-    private byte[] resumeUpload;
+    private String resumeLink;
 
 }

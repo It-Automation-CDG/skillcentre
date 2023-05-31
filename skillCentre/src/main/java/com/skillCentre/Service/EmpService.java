@@ -58,7 +58,6 @@ public class EmpService {
             employee.setPrimarySkills(updatedEmployee.getPrimarySkills());
             employee.setKnowledgeIn(updatedEmployee.getKnowledgeIn());
             employee.setAdditionalSkills(updatedEmployee.getAdditionalSkills());
-            employee.setResumeUpload(updatedEmployee.getResumeUpload());
             empRepo.save(employee);
             return true;
         } else {
@@ -68,7 +67,7 @@ public class EmpService {
 
     public Employee uploadResume(MultipartFile file) throws IOException {
         Employee employee = new Employee();
-        employee.setResumeUpload(file.getBytes());
+//        employee.setResumeUpload(file.getBytes());
 
         return empRepo.save(employee);
     }

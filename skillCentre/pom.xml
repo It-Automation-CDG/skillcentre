@@ -50,10 +50,17 @@
 			<artifactId>spring-aop</artifactId>
 			<version>6.0.9</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/clj-rtf-parser/clj-rtf-parser -->
+<!--		<dependency>-->
+<!--			<groupId>clj-rtf-parser</groupId>-->
+<!--			<artifactId>clj-rtf-parser</artifactId>-->
+<!--			<version>0.1.0</version>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>clj-rtf-parser</groupId>
-			<artifactId>clj-rtf-parser</artifactId>
-			<version>0.1.0</version>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>12.2.0.jre11</version>
 		</dependency>
 
 	</dependencies>
