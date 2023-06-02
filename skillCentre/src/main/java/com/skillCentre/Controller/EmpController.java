@@ -34,9 +34,8 @@ public class EmpController {
     }
 
     @PostMapping("/uploadResume")
-    public ResponseEntity<String> uploadResume(@RequestParam("file") MultipartFile file) throws IOException {
-        this.empService.uploadResume(file);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FILE HAS BEEN UPLOADED ");
+    public String uploadResume(@RequestParam("file") MultipartFile file) throws IOException {
+        return this.empService.uploadResume(file);
     }
 
     @GetMapping("/getpdf")
