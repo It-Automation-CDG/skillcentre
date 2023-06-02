@@ -27,5 +27,6 @@ public class Employee {
     private String AdditionalSkills;
     private String email;
     private String resumeLink;
+    private boolean timesheet;
 
 }
