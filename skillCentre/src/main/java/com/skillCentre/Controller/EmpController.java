@@ -1,6 +1,9 @@
 package com.skillCentre.Controller;
 
 
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.models.BlobItem;
 import com.skillCentre.Entity.Employee;
 import com.skillCentre.Service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,8 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
-
+    @Autowired
+    private BlobContainerClient blobContainerClient;
 
     @PostMapping("/added")
     public ResponseEntity<String> addedEmp(@RequestBody Employee employee){
@@ -33,6 +37,14 @@ public class EmpController {
     public ResponseEntity<String> uploadResume(@RequestParam("file") MultipartFile file) throws IOException {
         this.empService.uploadResume(file);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FILE HAS BEEN UPLOADED ");
+    }
+
+    @GetMapping("/getpdf")
+    public void getPdf(){
+        PagedIterable<BlobItem> items = blobContainerClient.listBlobs();
+        for (BlobItem blob : items) {
+            System.out.println(blob.getName());
+        }
     }
 
     @PutMapping("/{empId}")
