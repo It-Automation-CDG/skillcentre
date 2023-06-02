@@ -35,22 +35,12 @@ public class EmpController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("FILE HAS BEEN UPLOADED ");
     }
 
-    @PutMapping("/{empId}")
-    public ResponseEntity<String> updateEmployee(@PathVariable int employeeId, @RequestBody Employee updatedEmployee) {
-        boolean success = empService.updateEmployee(employeeId, updatedEmployee);
-        if (success) {
-            return ResponseEntity.ok("Employee updated successfully");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found");
-        }
-    }
+    @PutMapping("/update/{userId}")
 
-//    @PutMapping("/update/{userId}")
-//
-//    public ResponseEntity<String> updateUser(@RequestBody Employee user , @PathVariable ("userId") int id){
-//        String message = this.empService.update(id,user);
-//        return  new ResponseEntity<>(message, HttpStatus.OK);
-//    }
+    public ResponseEntity<String> updateUser(@RequestBody Employee user , @PathVariable ("userId") int id){
+        String message = this.empService.updateEmployee(id,user);
+        return  new ResponseEntity<>(message, HttpStatus.OK);
+    }
 
     @GetMapping("/getId")
     public ResponseEntity<List>getAll()
