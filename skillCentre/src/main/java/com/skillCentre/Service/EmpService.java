@@ -52,7 +52,7 @@ public class EmpService {
     }
 
     //this ius to check
-    public boolean updateEmployee(int employeeId, Employee updatedEmployee) {
+    public String updateEmployee(int employeeId, Employee updatedEmployee) {
         Optional<Employee> optionalEmployee = empRepo.findById(employeeId);
         if (optionalEmployee.isPresent()) {
             Employee employee = optionalEmployee.get();
@@ -62,10 +62,11 @@ public class EmpService {
             employee.setPrimarySkills(updatedEmployee.getPrimarySkills());
             employee.setKnowledgeIn(updatedEmployee.getKnowledgeIn());
             employee.setAdditionalSkills(updatedEmployee.getAdditionalSkills());
+            employee.setTimesheet(updatedEmployee.getTimesheet());
             empRepo.save(employee);
-            return true;
+            return "Employee updated";
         } else {
-            return false;
+            return "Employee not present";
         }
     }
 
