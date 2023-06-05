@@ -1,6 +1,8 @@
 package com.skillCentre.Service;
 
 
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobContainerClient;
 import com.skillCentre.Entity.Employee;
 import com.skillCentre.Exception.ResourceNotFoundException;
 import com.skillCentre.Repository.EmpRepo;
@@ -20,6 +22,8 @@ public class EmpService {
     @Autowired
     private EmpRepo empRepo;
     private final JavaMailSender mailSender;
+    @Autowired
+    private BlobContainerClient blobContainerClient;
 
     public EmpService(EmpRepo empRepo, JavaMailSender mailSender) {
         this.empRepo = empRepo;
@@ -65,11 +69,16 @@ public class EmpService {
         }
     }
 
-    public Employee uploadResume(MultipartFile file) throws IOException {
-        Employee employee = new Employee();
-//        employee.setResumeUpload(file.getBytes());
+    public String uploadResume(MultipartFile file) throws IOException {
 
-        return empRepo.save(employee);
+        BlobClient blob = blobContainerClient
+                .getBlobClient(file.getOriginalFilename());
+
+        blob.upload(file.getInputStream(), file.getSize(), false);
+
+        String uploadLink = "https://itautomationcdgstorage.blob.core.windows.net/it-auto-cdg/" + file.getOriginalFilename();
+
+        return uploadLink;
     }
     //method to send mail
 
