@@ -1,6 +1,9 @@
 package com.skillCentre.Controller;
 
 
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.models.BlobItem;
 import com.skillCentre.Entity.Employee;
 import com.skillCentre.Service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,8 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
-
+    @Autowired
+    private BlobContainerClient blobContainerClient;
 
     @PostMapping("/added")
     public ResponseEntity<String> addedEmp(@RequestBody Employee employee){
