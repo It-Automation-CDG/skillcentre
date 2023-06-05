@@ -82,5 +82,11 @@ public ResponseEntity<String> sendEmail(){
      this.empService.sendEmail();
     return  new ResponseEntity<>("email is sent to all employee", HttpStatus.OK);
 }
+    @Scheduled(cron = "0 07 11 * * *") // Schedule the task to run at 6 PM daily
+    @PostMapping("checkemail")
+    public ResponseEntity<String> checkemail(){
+        this.empService.checkemail();
+        return  new ResponseEntity<>("email is sent to employees who has not filled timesheet", HttpStatus.OK);
+    }
 
 }

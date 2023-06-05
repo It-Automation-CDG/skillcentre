@@ -75,7 +75,7 @@ public class EmpService {
 
     public void sendEmail() {
         List<Employee> list = empRepo.findAllEmail();
-        for (Employee e:list) {
+        for (Employee e : list) {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(e.getEmail());
             message.setSubject("congratulations");
@@ -84,6 +84,20 @@ public class EmpService {
             mailSender.send(message);
         }
     }
+        public void checkemail() {
+            List<Employee> list1 = empRepo.findAllEmail();
+            for (Employee e:list1) {
+                if (e.getTimesheet()==Boolean.FALSE) {
+                    SimpleMailMessage message = new SimpleMailMessage();
+                    message.setTo(e.getEmail());
+                    message.setSubject("timesheet reminder");
+                    message.setText("kindly fill your timesheet");
+
+                    mailSender.send(message);
+                }
+            }
+    }
+
 
 
 }
