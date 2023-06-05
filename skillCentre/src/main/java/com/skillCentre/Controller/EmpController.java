@@ -46,7 +46,7 @@ public class EmpController {
         return this.empService.uploadResume(file);
     }
 
-    @PutMapping("/{empId}")
+    @PutMapping("/update/{empId}")
     public ResponseEntity<String> updateUser(@RequestBody Employee user , @PathVariable ("userId") int id){
         String message = this.empService.updateEmployee(id,user);
         return  new ResponseEntity<>(message, HttpStatus.OK);
