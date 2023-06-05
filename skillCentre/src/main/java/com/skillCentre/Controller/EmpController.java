@@ -33,17 +33,17 @@ public class EmpController {
         return  new ResponseEntity<>(message, HttpStatus.CREATED);
     }
 
-    @PostMapping("/uploadResume/{empId}")
-    public String uploadResume(@RequestParam("file") MultipartFile file, @PathVariable("empId") int empId) throws IOException {
-        return this.empService.uploadResume(file);
-    }
-
     @GetMapping("/getpdf")
     public void getPdf(){
         PagedIterable<BlobItem> items = blobContainerClient.listBlobs();
         for (BlobItem blob : items) {
             System.out.println(blob.getName());
         }
+    }
+
+    @PostMapping("/uploadResume/{empId}")
+    public String uploadResume(@RequestParam("file") MultipartFile file, @PathVariable("empId") int empId) throws IOException {
+        return this.empService.uploadResume(file);
     }
 
     @PutMapping("/{empId}")

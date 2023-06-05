@@ -1,4 +1,4 @@
-package com.skillCentre.AzureConfig;
+package com.skillCentre.ConfigAzure;
 
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
